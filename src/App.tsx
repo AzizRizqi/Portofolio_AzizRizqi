@@ -1,5 +1,6 @@
 // src/App.tsx
 import React, { useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
 import './App.css'; // Hanya ini yang perlu diimpor
 
 // Import komponen-komponen section
@@ -28,6 +29,7 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans relative overflow-hidden">
+      <Toaster position="top-center" reverseOrder={false} />
       <main>
         <HeroSection profileImage={profileImage} />
         <AboutSection />

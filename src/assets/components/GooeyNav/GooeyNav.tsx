@@ -152,7 +152,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
     <>
       {/* This effect is quite difficult to recreate faithfully using Tailwind, so a style tag is a necessary workaround */}
       <style>
-{`
+        {`
   :root {
     --linear-ease: linear(0, 0.068, 0.19 2.7%, 0.804 8.1%, 1.037, 1.199 13.2%, 1.245, 1.27 15.8%, 1.274, 1.272 17.4%, 1.249 19.1%, 0.996 28%, 0.949, 0.928 33.3%, 0.926, 0.933 36.8%, 1.001 45.6%, 1.013, 1.019 50.8%, 1.018 54.4%, 1 63.1%, 0.995 68%, 1.001 85%, 1);
   }
@@ -295,12 +295,12 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
     z-index: -1;
   }
 `}
-</style>
+      </style>
       <div className="relative bg-transparent" ref={containerRef}>
         <nav className="flex relative" style={{ transform: 'translate3d(0,0,0.01px)' }}>
           <ul
             ref={navRef}
-            className="flex gap-8 list-none p-0 px-4 m-0 relative z-[3]"
+            className="flex gap-2 md:gap-4 list-none p-0 px-2 md:px-4 m-0 relative z-[3]"
             style={{
               color: 'white',
               textShadow: '0 1px 1px hsl(205deg 30% 10% / 0.2)'
@@ -315,7 +315,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
                   href={item.href}
                   onClick={e => handleClick(e, index)}
                   onKeyDown={e => handleKeyDown(e, index)}
-                  className={`outline-none py-[0.6em] px-[1em] inline-block ${activeIndex === index ? 'active' : ''
+                  className={`outline-none py-2 px-2 md:px-4 text-sm md:text-base inline-block whitespace-nowrap ${activeIndex === index ? 'active' : ''
                     }`}
                 >
                   {item.label}

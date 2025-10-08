@@ -2,6 +2,7 @@
 import React, { useState, useRef } from 'react';
 import { FaEnvelope, FaMapMarkerAlt, FaPhone, FaPaperPlane } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
+import toast from 'react-hot-toast';
 
 const ContactSection: React.FC = () => {
     const form = useRef<HTMLFormElement>(null);
@@ -27,7 +28,7 @@ const ContactSection: React.FC = () => {
 
         // Validasi format email sebelum mengirim
         if (!validateEmail(formData.email)) {
-            alert('Please enter a valid email address.');
+            toast.error('Please enter a valid email address.');
             return; // Hentikan pengiriman jika email tidak valid
         }
 
@@ -41,7 +42,7 @@ const ContactSection: React.FC = () => {
         // Pemeriksaan keamanan: pastikan variabel ada sebelum mengirim
         if (!serviceID || !templateID || !publicKey) {
             console.error("EmailJS environment variables are not set.");
-            alert("The contact form is currently unavailable. Please try again later.");
+            toast.error("The contact form is currently unavailable. Please try again later.");
             setIsSending(false);
             return;
         }
@@ -49,11 +50,11 @@ const ContactSection: React.FC = () => {
         emailjs.sendForm(serviceID, templateID, form.current, publicKey)
             .then((result) => {
                 console.log(result.text);
-                alert('Thank you for your message! I will get back to you soon.');
+                toast.success('Message sent successfully! I will get back to you soon.');
                 setFormData({ name: '', email: '', message: '' });
             }, (error) => {
                 console.log(error.text);
-                alert('Failed to send the message, please try again.');
+                toast.error('Failed to send the message, please try again.');
             })
             .finally(() => {
                 setIsSending(false);
